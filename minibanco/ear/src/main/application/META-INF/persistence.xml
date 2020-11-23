@@ -1,0 +1,93 @@
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.0"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+
+	<persistence-unit name="mb-formatador" transaction-type="JTA">
+
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<jta-data-source>java:jboss/datasources/dsFormatador</jta-data-source>
+		<shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode>
+
+		<properties>
+			<property name="hibernate.show_sql" value="false" />
+			<property name="hibernate.format_sql" value="false" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.Oracle10gDialect" />
+			<property name="hibernate.transaction.jta.platform" value="org.hibernate.service.jta.platform.internal.JBossAppServerJtaPlatform" />
+			<property name="hibernate.cache.region_prefix" value="" />
+			<property name="hibernate.cache.use_query_cache" value="true" />
+			<property name="hibernate.cache.use_second_level_cache" value="true" />
+			<property name="org.hibernate.cacheable" value="true" />
+			<property name="hibernate.cache.region.factory_class" value="org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory" />
+			<property name="net.sf.ehcache.configurationResourceName" value="file:///banklink/formatador/conf/ehcache/ehcache-formatador.xml" />
+		</properties>
+
+		<!-- Registrar as entidades COMUNS conforme necessidade -->
+		<class>la.foton.mb.componente.dominio.entidade.Feriado</class>
+		<class>la.foton.mb.componente.dominio.entidade.Log</class>
+		<class>la.foton.mb.componente.dominio.entidade.LogId</class>
+		<class>la.foton.mb.componente.dominio.entidade.Parametro</class>
+		<class>la.foton.mb.componente.dominio.entidade.SenhaCentralAtendimento</class>
+		<class>la.foton.mb.componente.dominio.entidade.TipoTransacao</class>
+		<class>la.foton.mb.componente.dominio.entidade.TipoTransacaoId</class>
+		<class>la.foton.mb.componente.dominio.entidade.LimitesTotalizacaoPorTransacao</class>
+		<class>la.foton.mb.componente.dominio.entidade.TarifaPorTransacao</class>
+		<class>la.foton.mb.componente.dominio.entidade.LimitesTransacao</class>
+		<class>la.foton.mb.componente.dominio.entidade.PontoAtendimento</class>
+		<class>la.foton.mb.componente.dominio.entidade.HistoricoPontoCorte</class>
+		<class>la.foton.mb.componente.dominio.entidade.TransferenciaRecurso</class>
+		<class>la.foton.mb.componente.dominio.entidade.TransferenciaRecursoId</class>
+		<class>la.foton.mb.componente.dominio.entidade.TransacaoCartaoCredito</class>
+		<class>la.foton.mb.componente.dominio.entidade.TransacaoCartaoCreditoId</class>
+
+		<class>la.foton.mb.componente.dominio.entidade.HistoricoPagamentoEletronico</class>
+		<class>la.foton.mb.componente.dominio.entidade.HistoricoPagamentoEletronicoId</class>
+		<class>la.foton.mb.componente.dominio.entidade.ParametroPagamentoEletronico</class>
+		<class>la.foton.mb.componente.dominio.entidade.ParametroPagamentoEletronicoId</class>
+		<class>la.foton.mb.componente.dominio.entidade.HistoricoTransacoesHomeBanking</class>
+		<class>la.foton.mb.componente.dominio.entidade.HistoricoTransacoesHomeBankingId</class>
+
+		<!--Entidades de formatação dinamica -->
+		<class>la.foton.mb.componente.dominio.entidade.AtributoEstruturaDinamica</class>
+		<class>la.foton.mb.componente.dominio.entidade.ComposicaoEstruturaDinamica</class>
+		<class>la.foton.mb.componente.dominio.entidade.ComposicaoEstruturaDinamicaId</class>
+		<class>la.foton.mb.componente.dominio.entidade.ConstanteEstruturaDinamica</class>
+		<class>la.foton.mb.componente.dominio.entidade.EstruturaDinamica</class>
+		<class>la.foton.mb.componente.dominio.entidade.EstruturaDinamicaId</class>
+		<class>la.foton.mb.componente.dominio.entidade.MascaraAtributoEstruturaDinamica</class>
+
+		<!-- Registrar as entidades ESPECÍFICAS conforme necessidade -->
+		<class>la.foton.mb.formatador.entidade.EstruturaFormatacaoDinamica</class>
+		<class>la.foton.mb.formatador.entidade.EstruturaFormatacaoDinamicaId</class>
+		<class>la.foton.mb.formatador.entidade.FormatacaoEstruturaDinamica</class>
+		<class>la.foton.mb.formatador.entidade.FormatacaoEstruturaDinamicaId</class>
+		<class>la.foton.mb.formatador.entidade.HistoricoFormatacao</class>
+		<class>la.foton.mb.formatador.entidade.HistoricoFormatacaoId</class>
+		<class>la.foton.mb.formatador.entidade.PedidoFormatacao</class>
+		<class>la.foton.mb.formatador.entidade.PedidoFormatacaoId</class>
+		<class>la.foton.mb.formatador.entidade.RegraFormatacao</class>
+		<class>la.foton.mb.formatador.entidade.RegraFormatacaoId</class>
+
+		<!-- Componente FOTON-Step-manager -->
+		<class>la.foton.componente.stepmanager.entidade.DefinicaoPasso</class>
+		<class>la.foton.componente.stepmanager.entidade.Passo</class>
+		<class>la.foton.componente.stepmanager.entidade.VinculoPtaDefinicaoPasso</class>
+		<class>la.foton.componente.stepmanager.entidade.VinculoDefinicaoPassoDependente</class>
+		<class>la.foton.componente.stepmanager.entidade.ExecucaoPasso</class>
+		<class>la.foton.componente.stepmanager.entidade.RegistroExecucao</class>
+		<class>la.foton.componente.stepmanager.entidade.DefinicaoAtributo</class>
+		<class>la.foton.componente.stepmanager.entidade.TipoDefinicaoPasso</class>
+		<class>la.foton.componente.stepmanager.entidade.ParametroDefinicaoPasso</class>
+		<class>la.foton.componente.stepmanager.entidade.PoolExecucao</class>
+
+		<!-- foton-arquivo -->
+		<class>la.foton.componente.arquivo.entidade.Arquivo</class>
+		<class>la.foton.componente.arquivo.entidade.ArquivoFormatadoNome</class>
+		<class>la.foton.componente.arquivo.entidade.DefinicaoPassoArquivo</class>
+
+		<!-- Componente FOTON-Formatador -->
+		<class>la.foton.componente.formatador.libfdk.est.GrupoFormatacao</class>
+		<class>la.foton.componente.formatador.libfdk.est.PontoCorte</class>
+		<class>la.foton.componente.formatador.libfdk.est.FormatacaoTipoTransacao</class>
+
+	</persistence-unit>
+</persistence>

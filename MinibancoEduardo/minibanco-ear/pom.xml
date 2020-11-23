@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+   <modelVersion>4.0.0</modelVersion>
+
+   <parent>
+      <groupId>la.foton.treinamento</groupId>
+      <artifactId>minibanco</artifactId>
+      <version>1.0.0-SNAPSHOT</version>
+   </parent>
+
+   <artifactId>minibanco-ear</artifactId>
+   <name>minibanco-ear</name>
+   <description>Minibanco -EAR de servicos </description>
+
+   <packaging>ear</packaging>
+
+   <dependencies>
+
+      <dependency>
+         <groupId>la.foton.treinamento</groupId>
+         <artifactId>minibanco-core</artifactId>
+         <version>${project.version}</version>
+         <type>ejb</type>
+      </dependency>
+      <!-- Fim: Dependências do componente FOTON-arquivo -->
+
+      <dependency>
+         <groupId>org.apache.logging.log4j</groupId>
+         <artifactId>log4j-1.2-api</artifactId>
+      </dependency>
+
+   </dependencies>
+
+   <build>
+      <plugins>
+         <plugin>
+            <artifactId>maven-ear-plugin</artifactId>
+            <version>2.8</version>
+            <configuration>
+               <displayName>Minibanco -EAR de servicos</displayName>
+               <generateApplicationXml>true</generateApplicationXml>
+               <defaultLibBundleDir>lib</defaultLibBundleDir>
+               <version>6</version>
+               <finalName>${project.artifactId}</finalName>
+               <archive>
+                  <manifest>
+                     <addClasspath>true</addClasspath>
+                  </manifest>
+               </archive>
+               <modules>
+
+                  <!-- Início: Módulos do componente FOTON-step-manager -->
+                  <ejbModule>
+                     <groupId>la.foton.treinamento</groupId>
+                     <artifactId>minibanco-core</artifactId>
+                     <bundleFileName>minibanco-core.jar</bundleFileName>
+                  </ejbModule>
+               </modules>
+            </configuration>
+         </plugin>
+      </plugins>
+      <finalName>${project.artifactId}</finalName>
+   </build>
+
+</project>

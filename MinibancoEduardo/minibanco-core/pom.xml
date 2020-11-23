@@ -1,0 +1,110 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+   <modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>la.foton.treinamento</groupId>
+		<artifactId>minibanco</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
+
+   <artifactId>minibanco-core</artifactId>
+   <name>minibanco-core</name>
+   <description>camada de negocio minibanco</description>
+   <packaging>ejb</packaging>
+
+   <dependencies>
+      <!-- Inicio: Dependências do projeto -->
+      <dependency>
+         <groupId>org.quartz-scheduler</groupId>
+         <artifactId>quartz</artifactId>
+      </dependency>
+      <dependency>
+         <groupId>org.quartz-scheduler</groupId>
+         <artifactId>quartz-jobs</artifactId>
+      </dependency>
+      <!-- Fim: Dependências do projeto -->
+
+      <!-- Início: Logging -->
+      <dependency>
+         <groupId>org.apache.logging.log4j</groupId>
+         <artifactId>log4j-api</artifactId>
+      </dependency>
+      <dependency>
+         <groupId>org.apache.logging.log4j</groupId>
+         <artifactId>log4j-core</artifactId>
+      </dependency>
+      <dependency>
+         <groupId>com.lmax</groupId>
+         <artifactId>disruptor</artifactId>
+      </dependency>
+      <!-- Fim: Logging -->
+
+      <dependency>
+         <groupId>org.hibernate</groupId>
+         <artifactId>hibernate-entitymanager</artifactId>
+      </dependency>
+
+      <dependency>
+         <groupId>org.hibernate</groupId>
+         <artifactId>hibernate-core</artifactId>
+      </dependency>
+
+      <dependency>
+         <groupId>org.hibernate</groupId>
+         <artifactId>hibernate-ehcache</artifactId>
+      </dependency>
+
+      <!-- Início: Frameworks de teste e integração -->
+      <dependency>
+         <groupId>org.reflections</groupId>
+         <artifactId>reflections</artifactId>
+      </dependency>
+      <dependency>
+         <artifactId>log4j</artifactId>
+         <groupId>log4j</groupId>
+         <scope>test</scope>
+      </dependency>
+      <!-- Fim: Frameworks de teste e integração -->
+
+   </dependencies>
+
+   <build>
+      <resources>
+         <resource>
+            <directory>src/main/resources</directory>
+            <filtering>true</filtering>
+            <includes>
+               <include>**/maven.properties</include>
+            </includes>
+         </resource>
+         <resource>
+            <directory>src/main/resources</directory>
+            <filtering>false</filtering>
+            <excludes>
+               <exclude>**/maven.properties</exclude>
+            </excludes>
+         </resource>
+      </resources>
+
+      <plugins>
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-ejb-plugin</artifactId>
+            <version>2.3</version>
+            <configuration>
+               <ejbVersion>3.1</ejbVersion>
+               <archive>
+                  <manifest>
+                     <addClasspath>true</addClasspath>
+                  </manifest>
+                  <manifestEntries>
+                     <Dependencies>com.oracle</Dependencies>
+                  </manifestEntries>
+               </archive>
+            </configuration>
+         </plugin>
+      </plugins>
+   </build>
+
+</project>
